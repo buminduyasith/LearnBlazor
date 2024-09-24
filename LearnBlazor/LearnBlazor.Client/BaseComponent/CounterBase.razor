@@ -1,0 +1,19 @@
+﻿
+
+<h3>@Count</h3>
+
+<Button @onclick="IncrementCount">increase</Button>
+
+@code {
+
+    [Parameter] [EditorRequired] public int Count { get; set; }
+    [Parameter] public EventCallback<int> OnCountChanged { get; set; }
+
+    public void IncrementCount() => OnCountChanged.InvokeAsync(Count + 1);
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("counterbase onparametersset");
+        base.OnParametersSet();
+    }
+}
